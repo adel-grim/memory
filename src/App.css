@@ -21,6 +21,11 @@
   margin: 10px;
   perspective: 300px;
   cursor: pointer;
+  cursor: url('../src/images/pikachucursor.png'), auto;
+}
+
+.card:hover {
+  transform: scale(1.05);
 }
 
 .card img {
@@ -29,10 +34,12 @@
   object-fit: contain;
   backface-visibility: hidden;
   transition: transform 0.5s;
+  
 }
 
 .card.flipped img {
   transform: rotateY(360deg);
+  
 }
 
 .button {
@@ -68,3 +75,4 @@
   color: darkblue; /* Changer la couleur en rouge */
   font-family: 'Pokemon Solid', sans-serif; /* Changer la police en Arial */
 }
+

@@ -123,7 +123,7 @@ const App = () => {
         <div className="move"><p>Moves: {moves}</p></div>
         <div className="timer"><p>Time left:{Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}</p></div> 
         {isGameWon && <p>Congratulations, you won!</p>}
-        <Button onClick={resetGame}>Restart</Button>
+        <Button onClick={resetGame}>Recommencer</Button>
       </div>
     </div>
   );
