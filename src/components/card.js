@@ -1,6 +1,6 @@
 // Card.js
 import React from 'react';
-import hiddenImage from '../images/point-interrogation.jpg'; // Importez l'image de dos de carte
+import hiddenImage from '../images/reversecard.jpg'; // Importez l'image de dos de carte
 
 const Card = ({ image, onClick, flipped }) => {
   return (

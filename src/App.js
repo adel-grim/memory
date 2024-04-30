@@ -9,10 +9,12 @@ import './App.css';
 
 
 const images = [
-  require('../src/images/carte-as.png'),
-  require('../src/images/carte-neuf.png'),
-  require('../src/images/carte-trois.png'),
-  require('../src/images/carte-quatre.png'),
+  require('../src/images/dracolossejpg.jpg'),
+  require('../src/images/givrali.jpg'),
+  require('../src/images/noctali.jpg'),
+  require('../src/images/pikachu.jpg'),
+  require('../src/images/rayquaza.jpg'),
+  require('../src/images/suicune.jpg'),
   // Ajoutez ici autant d'images que nécessaire
 ];
 
@@ -88,7 +90,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <Title>Memory Game</Title>
+      <Title>Pokemon cards memory game</Title>
       <div className="game-board">
         {cards.map((card, index) => (
           <Card
@@ -101,7 +103,7 @@ const App = () => {
       </div>
       <div className="game-info">
         <p>Moves: {moves}</p>
-        {isGameWon && <p>Congratulations! You won!</p>}
+        {isGameWon && <p>Felicitations, vous avez gagné !</p>}
         <Button onClick={resetGame}>Restart</Button>
       </div>
     </div>

@@ -41,8 +41,10 @@
 /* App.css */
 .app {
   text-align: center;
-  background-color: black;
+  background-image: url(images/fondecran.jpg);
 }
+
+
 
 .game-board {
   display: flex;
@@ -87,6 +89,9 @@
 }
 
 .title {
-  font-size: 24px;
+  font-size: 40px;
   margin-bottom: 20px;
+  font-family: 'Pokemon Solid', sans-serif;
+  color:rgba(255, 217, 0, 0.842)
 }
+
