@@ -1,12 +1,8 @@
-// App.js
 import React, { useState, useEffect } from 'react';
 import Title from '../src/components/title';
 import Button from '../src/components/button';
 import Card from '../src/components/card';
 import './App.css';
-
-
-
 
 const images = [
   require('../src/images/dracolossejpg.jpg'),
@@ -15,18 +11,22 @@ const images = [
   require('../src/images/pikachu.jpg'),
   require('../src/images/rayquaza.jpg'),
   require('../src/images/suicune.jpg'),
-  // Ajoutez ici autant d'images que nécessaire
+  require('../src/images/golem.jpg'),
+  require('../src/images/bruyverne.jpg'),
+  require('../src/images/dracaufeu.png'),
+  require('../src/images/mewtwo.png'),
 ];
-
 
 const App = () => {
   const [cards, setCards] = useState([]);
   const [flippedCards, setFlippedCards] = useState([]);
   const [matchedCards, setMatchedCards] = useState([]);
   const [moves, setMoves] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(120); // 2 minutes en secondes
 
   useEffect(() => {
     initializeGame();
+    startTimer();
   }, []);
 
   const initializeGame = () => {
@@ -81,7 +81,24 @@ const App = () => {
     setFlippedCards([]);
     setMatchedCards([]);
     setMoves(0);
+    setTimeLeft(120); // Réinitialiser le temps restant
     initializeGame();
+  };
+
+  const startTimer = () => {
+    const timer = setInterval(() => {
+      setTimeLeft(prevTime => {
+        if (prevTime === 0) {
+          clearInterval(timer);
+          if (matchedCards.length !== cards.length) {
+            alert("Game over! Vous n'avez pas retourné toutes les cartes à temps.");
+          }
+          return prevTime;
+        } else {
+          return prevTime - 1;
+        }
+      });
+    }, 1000);
   };
 
   const isCardFlipped = id => flippedCards.includes(id) || matchedCards.includes(id);
@@ -90,7 +107,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <Title>Pokemon cards memory game</Title>
+      <Title>Pokemon Cards Memory Game</Title>
       <div className="game-board">
         {cards.map((card, index) => (
           <Card
@@ -102,8 +119,10 @@ const App = () => {
         ))}
       </div>
       <div className="game-info">
-        <p>Moves: {moves}</p>
-        {isGameWon && <p>Felicitations, vous avez gagné !</p>}
+      
+        <div className="move"><p>Moves: {moves}</p></div>
+        <div className="timer"><p>Time left:{Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}</p></div> 
+        {isGameWon && <p>Congratulations, you won!</p>}
         <Button onClick={resetGame}>Restart</Button>
       </div>
     </div>
@@ -111,6 +130,3 @@ const App = () => {
 };
 
 export default App;
-
-
-
