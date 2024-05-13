@@ -3,7 +3,7 @@
 /* App.css */
 .app {
   text-align: center;
-  background-image: url(images/fondecran.jpg);
+  background-image: url(images/locklass.jpg);
 }
 
 
@@ -16,8 +16,8 @@
 }
 
 .card {
-  width: 250px;
-  height: 250px;
+  width: 180px;
+  height: 180px;
   margin: 10px;
   perspective: 300px;
   cursor: pointer;

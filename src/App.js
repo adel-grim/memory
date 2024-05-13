@@ -17,6 +17,7 @@ const images = [
   require('../src/images/mewtwo.png'),
 ];
 
+
 const App = () => {
   const [cards, setCards] = useState([]);
   const [flippedCards, setFlippedCards] = useState([]);
@@ -76,6 +77,7 @@ const App = () => {
     setFlippedCards([]);
   };
 
+  
   const resetGame = () => {
     setCards([]);
     setFlippedCards([]);
@@ -86,24 +88,27 @@ const App = () => {
   };
 
   const startTimer = () => {
-    const timer = setInterval(() => {
+    const startTime = Date.now(); // Enregistrer le temps de début
+    const timerInterval = setInterval(() => {
+      const elapsedTime = Math.floor((Date.now() - startTime) / 1000); // Calculer le temps écoulé en secondes
       setTimeLeft(prevTime => {
-        if (prevTime === 0) {
-          clearInterval(timer);
+        const remainingTime = 120 - elapsedTime; // Calculer le temps restant
+        if (remainingTime <= 0) {
+          clearInterval(timerInterval);
           if (matchedCards.length !== cards.length) {
             alert("Game over! Vous n'avez pas retourné toutes les cartes à temps.");
           }
-          return prevTime;
+          return 0; // Retourner 0 si le temps est écoulé
         } else {
-          return prevTime - 1;
+          return remainingTime; // Mettre à jour le temps restant
         }
       });
     }, 1000);
-  };
+  };  
 
   const isCardFlipped = id => flippedCards.includes(id) || matchedCards.includes(id);
 
-  const isGameWon = cards.length === matchedCards.length;
+  const isGameWon = matchedCards.length === cards.length / 2;
 
   return (
     <div className="app">
@@ -119,10 +124,9 @@ const App = () => {
         ))}
       </div>
       <div className="game-info">
-      
         <div className="move"><p>Moves: {moves}</p></div>
-        <div className="timer"><p>Time left:{Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}</p></div> 
-        {isGameWon && <p>Congratulations, you won!</p>}
+        <div className="timer"><p>Time left: {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}</p></div> 
+        {isGameWon && <p>Bravo vous avez gagné !</p>}
         <Button onClick={resetGame}>Recommencer</Button>
       </div>
     </div>
